@@ -1,3 +1,5 @@
+import javafx.util.Pair;
+
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -10,7 +12,7 @@ public class Main {
         Random random = new Random();
 
 
-        int[] array =  random.ints(0,10)
+        int[] array =  random.ints(-10,10)
                 .limit(20).toArray();
 
         System.out.println("Initial array: " + Arrays.toString(array));
@@ -23,7 +25,7 @@ public class Main {
                 .boxed()
                 .collect(Collectors.toMap(
                         i -> array[i],
-                        i -> String.format(" (index - %d)", i),
+                        i -> String.format(" (index %d)", i),
                         (a, b) -> String.join(", ", a, b)))
                 .entrySet().stream()
                 .min(Comparator.comparing((a) -> a.getKey())).get().toString());
